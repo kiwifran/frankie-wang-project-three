@@ -7,7 +7,7 @@ body {
     margin: 0 auto; 
     max-width: 1600px;
 }
-.flexWrapper {
+.flex-wrapper {
     padding:0;
     margin:0;
     display: flex;
@@ -68,7 +68,7 @@ h1 {
     text-transform: uppercase;
     color:$brickred;
 }
-button.scrollDown {
+button.scroll-down {
     width:27%;
     margin:2rem auto;
     box-shadow: 0px 17px 14px -7px #e67a73;
@@ -92,7 +92,7 @@ main {
     padding-bottom: 2rem;
     text-align: left;
 }
-.preference .flexWrapper {
+.preference .flex-wrapper {
     margin-top: 2rem;
 }
 .preference h2 {
@@ -165,43 +165,43 @@ main button {
 }
 
 //result
-.resultWrapper {
+.result-wrapper {
     padding:1rem 5rem 2rem;
-    background-color: rgba(247, 238, 118, 0.288);
+    background-color: rgba(247, 238, 118, 0.188);
     text-align: center;
 }
-// .resultWrapper .flexWrapper,
-// .resultWrapper .pageLink {
+// .result-wrapper .flex-wrapper,
+// .result-wrapper .pageLink {
 //     width:80%;
 // }
-.resultWrapper .flexWrapper{
+.result-wrapper .flex-wrapper{
     margin: 0 auto;
     flex-wrap: wrap;
     text-align: left;
     line-height: 1.2;
     font-size: 0.9rem;
 }
-.resultWrapper .imageWrapper {
+.result-wrapper .image-wrapper {
     width:30%;
     // display: block;
     margin: 1rem auto;
     position: relative;
     overflow: hidden;
 }
-.imageWrapper:hover {
+.image-wrapper:hover {
         img {
             opacity: 0.2;
         }
         .info {
             opacity: 1;
         }
-        .numberInfo {
+        .number-info {
 
         
         left:0;
         margin-top: 0;
         }
-        .timeInfo{
+        .time-info{
             margin-top: 4%;
         }
         // .timeInfo{
@@ -210,17 +210,17 @@ main button {
         // }
 }
 
-.resultWrapper .recipeImage {
+.result-wrapper .recipe-image {
     width:100%;
     // margin: 1rem auto;
 }
-.recipeImage img {
+.recipe-image img {
     border-radius: 50%;
     box-shadow: 0px 2px 5px -2px $berrypurple;
 }
 //I learned how to add hover affects to show the information about recipe from https://codepen.io/hans/pen/hanBu
 
-.imageWrapper .info{
+.image-wrapper .info{
     width:100%;
     height:100%;
     position:absolute;
@@ -232,26 +232,26 @@ main button {
     color:$berrypurple;
     opacity:0;
 }
-.info .numberInfo, .info .timeInfo {
+.info .number-info, .info .time-info {
     display:block;
 
     transition: all 0.7s;
 }
-.info .numberInfo {
+.info .number-info {
     // margin-left:0;
     margin-top: -100%;
 }
-.info .timeInfo {
+.info .time-info {
     margin-top: 199%;
 }
 
-.resultWrapper .cookingStep {
+.result-wrapper .cooking-step {
     width: 45%;
 }
-.resultWrapper .cookingStepSpecial {
+.result-wrapper .cooking-step-special {
     width: 100%;
 }
-.resultWrapper span.methodOrder {
+.result-wrapper span.method-order {
     display: block;
     width: 20%;
     margin: 0.5rem auto;
@@ -260,12 +260,12 @@ main button {
     color:$berrypurple;
     text-align: center;
 }
-.resultWrapper .pageLink{
+.result-wrapper .page-link{
     margin-top: 2rem;
     font-size: 1.25rem;
 
 }
-.pageLink a{
+.page-link a{
     text-decoration: none;
     color:inherit;
     text-align: left;

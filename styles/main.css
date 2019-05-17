@@ -119,31 +119,10 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: '';
-  clear: both;
-  height: 0; }
-
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-
-.visuallyHidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(0 0 0);
-  overflow: hidden; }
 
 html {
   /* initializng fonts */
@@ -154,7 +133,7 @@ body {
   margin: 0 auto;
   max-width: 1600px; }
 
-.flexWrapper {
+.flex-wrapper {
   padding: 0;
   margin: 0;
   display: -webkit-box;
@@ -233,7 +212,7 @@ h1 {
   text-transform: uppercase;
   color: #993300; }
 
-button.scrollDown {
+button.scroll-down {
   width: 27%;
   margin: 2rem auto;
   -webkit-box-shadow: 0px 17px 14px -7px #e67a73;
@@ -257,7 +236,7 @@ main {
   padding-bottom: 2rem;
   text-align: left; }
 
-.preference .flexWrapper {
+.preference .flex-wrapper {
   margin-top: 2rem; }
 
 .preference h2 {
@@ -328,12 +307,12 @@ main button {
     -webkit-box-shadow: 0px 8px 8px -1px #6d2f3f;
     box-shadow: 0px 8px 8px -1px #6d2f3f; }
 
-.resultWrapper {
+.result-wrapper {
   padding: 1rem 5rem 2rem;
-  background-color: rgba(247, 238, 118, 0.288);
+  background-color: rgba(247, 238, 118, 0.188);
   text-align: center; }
 
-.resultWrapper .flexWrapper {
+.result-wrapper .flex-wrapper {
   margin: 0 auto;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -341,34 +320,34 @@ main button {
   line-height: 1.2;
   font-size: 0.9rem; }
 
-.resultWrapper .imageWrapper {
+.result-wrapper .image-wrapper {
   width: 30%;
   margin: 1rem auto;
   position: relative;
   overflow: hidden; }
 
-.imageWrapper:hover img {
+.image-wrapper:hover img {
   opacity: 0.2; }
 
-.imageWrapper:hover .info {
+.image-wrapper:hover .info {
   opacity: 1; }
 
-.imageWrapper:hover .numberInfo {
+.image-wrapper:hover .number-info {
   left: 0;
   margin-top: 0; }
 
-.imageWrapper:hover .timeInfo {
+.image-wrapper:hover .time-info {
   margin-top: 4%; }
 
-.resultWrapper .recipeImage {
+.result-wrapper .recipe-image {
   width: 100%; }
 
-.recipeImage img {
+.recipe-image img {
   border-radius: 50%;
   -webkit-box-shadow: 0px 2px 5px -2px #582707;
   box-shadow: 0px 2px 5px -2px #582707; }
 
-.imageWrapper .info {
+.image-wrapper .info {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -380,25 +359,25 @@ main button {
   color: #582707;
   opacity: 0; }
 
-.info .numberInfo, .info .timeInfo {
+.info .number-info, .info .time-info {
   display: block;
   -webkit-transition: all 0.7s;
   -o-transition: all 0.7s;
   transition: all 0.7s; }
 
-.info .numberInfo {
+.info .number-info {
   margin-top: -100%; }
 
-.info .timeInfo {
+.info .time-info {
   margin-top: 199%; }
 
-.resultWrapper .cookingStep {
+.result-wrapper .cooking-step {
   width: 45%; }
 
-.resultWrapper .cookingStepSpecial {
+.result-wrapper .cooking-step-special {
   width: 100%; }
 
-.resultWrapper span.methodOrder {
+.result-wrapper span.method-order {
   display: block;
   width: 20%;
   margin: 0.5rem auto;
@@ -407,18 +386,18 @@ main button {
   color: #582707;
   text-align: center; }
 
-.resultWrapper .pageLink {
+.result-wrapper .page-link {
   margin-top: 2rem;
   font-size: 1.25rem; }
 
-.pageLink a {
+.page-link a {
   text-decoration: none;
   color: inherit;
   text-align: left;
   -webkit-transform: all 0.5s;
   -ms-transform: all 0.5s;
   transform: all 0.5s; }
-  .pageLink a:hover {
+  .page-link a:hover {
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #582707; }
 
