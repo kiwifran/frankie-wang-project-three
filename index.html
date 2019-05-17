@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Easy Recipes</title>
+    <link href="https://fonts.googleapis.com/css?family=Kalam:300,400|Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <header>
+        <h1 >Easy Recipes</h1>
+        <button class="scrollDown">Find your recipe</button>
+    </header>
+    <main>
+        <div class="questionWrapper" id="questions">
+            <form action="">
+                <div class="preference ingredientPref">
+                    <h2><span>1.</span>Which ingredient do you prefer?</h2>
+                    <div class="flexWrapper">
+                        <input type="radio" id="meat" name = "ingredientPref" value="meat">
+                        <label for="meat"><i class="fas fa-drumstick-bite"></i> <span>Meat</span></label>                       
+                        <input type="radio" id="veggies" name = "ingredientPref" value="veggies">
+                        <label for="veggies"><i class="fas fa-leaf"></i> <span>Vegetables</span></label>                       
+                    </div>
+                </div>
+                <div class="preference numberPref">
+                    <h2><span>2.</span>How many people are you going to serve?</h2>
+                    <div class="flexWrapper">
+                        <input type="radio" id="more" name="numberPref" value="more">
+                        <label for="more"><i class="fas fa-glass-cheers"></i> <span>4 and more!</span></label>
+                        <input type="radio" id="less" name="numberPref" value="less">
+                        <label for="less"><i class="fas fa-user"></i> <span>less than 4!</span> </label>
+                    </div>
+                </div>
+                <div class="preference timePref">
+                    <h2><span>3.</span>How long it takes to cook?</h2>
+                    <div class="flexWrapper">
+                        <input type="radio" id="longTime" name="timePref" value="longTime">
+                        <label for="longTime"><i class="fas fa-clock"></i> <span>35 minutes or more</span></label>
+                        <input type="radio" id="shortTime" name="timePref" value="shortTime">
+                        <label for="shortTime"><i class="fas fa-stopwatch"></i> <span>less than 35 minutes</span></label>
+                    </div>
+                </div>
+                <button>Get the recipe!</button>
+                <div class="notice"></div>
+            </form>
+        </div>
+        <div id="results">
+            <!-- quiz result appears -->
+        </div>
+        <div class="anotherTry">
+            <!-- <button class="reset">Another recipe</button> -->
+        </div>
+    </main>
+    <footer>
+        <div class="attribution">Data provided by BBC Good Food</div>
+    </footer>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
