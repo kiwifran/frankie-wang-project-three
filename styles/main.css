@@ -165,16 +165,16 @@ button {
   display: block;
   border: none;
   border-radius: 1.9rem;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #e4685d), to(#eb675e));
-  background: -webkit-linear-gradient(top, #e4685d 5%, #eb675e 100%);
-  background: -o-linear-gradient(top, #e4685d 5%, #eb675e 100%);
-  background: linear-gradient(to bottom, #e4685d 5%, #eb675e 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #d13e33), to(#d45113));
+  background: -webkit-linear-gradient(top, #d13e33 5%, #d45113 100%);
+  background: -o-linear-gradient(top, #d13e33 5%, #d45113 100%);
+  background: linear-gradient(to bottom, #d13e33 5%, #d45113 100%);
   color: white; }
   button:active {
     position: relative;
     top: 2px;
-    -webkit-box-shadow: 0px 8px 8px -1px #6d2f3f;
-    box-shadow: 0px 8px 8px -1px #6d2f3f; }
+    -webkit-box-shadow: 0px 8px 8px -1px #81310c;
+    box-shadow: 0px 8px 8px -1px #81310c; }
   button:hover, button:focus {
     -webkit-animation: shake 0.9s ease-out both;
     animation: shake 0.9s ease-out both;
@@ -233,19 +233,27 @@ h1 {
 button.scroll-down {
   width: 27%;
   margin: 2rem auto;
-  -webkit-box-shadow: 0px 17px 14px -7px #e67a73;
-  box-shadow: 0px 17px 14px -7px #e67a73;
+  -webkit-box-shadow: 0px 14px 12px -7px #81310c;
+  box-shadow: 0px 14px 12px -7px #81310c;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1.1rem 1rem; }
 
 main {
   padding-bottom: 3rem;
-  background-image: -webkit-gradient(linear, right top, left bottom, from(#ebbe85), color-stop(#f3b282), color-stop(#f9a683), color-stop(#fd9989), color-stop(#fd8e93), color-stop(#fd8a9e), color-stop(#fb87aa), color-stop(#f686b7), color-stop(#f48ac4), color-stop(#f18fd2), color-stop(#ec94df), to(#e59aec));
-  background-image: -webkit-linear-gradient(right top, #ebbe85, #f3b282, #f9a683, #fd9989, #fd8e93, #fd8a9e, #fb87aa, #f686b7, #f48ac4, #f18fd2, #ec94df, #e59aec);
-  background-image: -o-linear-gradient(right top, #ebbe85, #f3b282, #f9a683, #fd9989, #fd8e93, #fd8a9e, #fb87aa, #f686b7, #f48ac4, #f18fd2, #ec94df, #e59aec);
-  background-image: linear-gradient(to left bottom, #ebbe85, #f3b282, #f9a683, #fd9989, #fd8e93, #fd8a9e, #fb87aa, #f686b7, #f48ac4, #f18fd2, #ec94df, #e59aec);
-  color: white; }
+  color: white;
+  position: relative; }
+
+#canvas-basic {
+  position: absolute;
+  display: block;
+  z-index: -5;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
 
 .preference {
   width: 66%;
@@ -265,7 +273,7 @@ label {
   width: 40%;
   position: relative;
   text-align: left;
-  font-size: 1.2rem; }
+  font-size: 1.4rem; }
   label:before {
     content: "";
     position: absolute;
@@ -279,8 +287,6 @@ label {
     -webkit-transition: background-color 0.5s;
     -o-transition: background-color 0.5s;
     transition: background-color 0.5s; }
-    label:before:hover {
-      background-color: pink; }
   label:after {
     content: "";
     position: absolute;
@@ -295,6 +301,9 @@ label {
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s; }
 
+label:hover:before {
+  background-color: #f9a03f; }
+
 label:hover::after {
   opacity: 0.5; }
 
@@ -307,24 +316,24 @@ input[type="radio"] {
 
 [type="radio"]:focus + label::before,
 [type="radio"]:active + label::before {
-  background: #ED6B55; }
+  background: #f9a03f; }
 
 main button {
   width: 35%;
   margin: 3rem auto;
-  -webkit-box-shadow: 0px 12px 10px -4px  #77253a;
-  box-shadow: 0px 12px 10px -4px  #77253a;
+  -webkit-box-shadow: 0px 12px 10px -4px #81310c;
+  box-shadow: 0px 12px 10px -4px #81310c;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 0.8rem; }
 
 .result-wrapper {
   padding: 1rem 5rem 2rem;
-  background-color: rgba(247, 238, 118, 0.188);
+  background-color: rgba(253, 246, 142, 0.188);
   text-align: center; }
 
 .notice {
-  color: yellow; }
+  color: #582707; }
 
 .result-wrapper .flex-wrapper {
   margin: 0 auto;
@@ -333,6 +342,10 @@ main button {
   text-align: left;
   line-height: 1.2;
   font-size: 0.9rem; }
+
+.recipe-name {
+  color: #d13e33;
+  font-size: 2rem; }
 
 .result-wrapper .image-wrapper {
   width: 30%;
@@ -366,7 +379,7 @@ main button {
   height: 100%;
   position: absolute;
   left: 0;
-  top: 30%;
+  top: 35%;
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
@@ -385,11 +398,16 @@ main button {
 .info .time-info {
   margin-top: 199%; }
 
+.cooking-step,
+.cooking-step-special {
+  line-height: 1.4; }
+
 .result-wrapper .cooking-step {
   width: 45%; }
 
 .result-wrapper .cooking-step-special {
-  width: 100%; }
+  width: 100%;
+  text-align: center; }
 
 .result-wrapper span.method-order {
   display: block;
@@ -402,18 +420,20 @@ main button {
 
 .result-wrapper .page-link {
   margin-top: 2rem;
-  font-size: 1.25rem; }
+  padding-top: 0.5rem;
+  border-top: 3px solid #d45113;
+  font-size: 1.5rem; }
 
 .page-link a {
   text-decoration: none;
-  color: yellow;
+  color: #d13e33;
   text-align: left;
   -webkit-transform: all 0.5s;
   -ms-transform: all 0.5s;
   transform: all 0.5s; }
   .page-link a:hover, .page-link a:focus {
-    padding-bottom: 0.05rem;
-    border-bottom: 1px solid #582707; }
+    padding-bottom: 0.02rem;
+    border-bottom: 1px solid #d45113; }
 
 .attribution {
   padding: 0.5rem 0;
@@ -431,4 +451,4 @@ footer a {
   -o-transition: color 0.6s;
   transition: color 0.6s; }
   footer a:hover, footer a:focus {
-    color: yellow; }
+    color: #f9a03f; }

@@ -21,45 +21,50 @@
     <!-- header ends -->
     
     <main>
-        <div class="question-wrapper" id="questions">
-            <form action="">
-                <div class="preference">
-                    <h2><span>1.</span>Which ingredient do you prefer?</h2>
-                    <div class="flex-wrapper">
-                        <input type="radio" id="meat" name = "ingredient-pref" value="meat">
-                        <label for="meat"><i aria-hidden="true" class="fas fa-drumstick-bite"></i> <span>Meat</span></label>                       
-                        <input type="radio" id="veggies" name = "ingredient-pref" value="veggies">
-                        <label for="veggies"><i aria-hidden="true" class="fas fa-leaf"></i> <span>Vegetables</span></label>                       
+        <canvas id="canvas-basic"></canvas>
+            <div class="question-wrapper" id="questions">
+                <form action="">
+                    <div class="preference">
+                        <h2><span>Q1.</span>Which ingredient do you prefer?</h2>
+                        <div class="flex-wrapper">
+                            <input type="radio" id="meat" name="ingredient-pref" value="meat">
+                            <label for="meat"><i aria-hidden="true" class="fas fa-drumstick-bite"></i> <span>Meat</span></label>
+                            <input type="radio" id="veggies" name="ingredient-pref" value="veggies">
+                            <label for="veggies"><i aria-hidden="true" class="fas fa-leaf"></i> <span>Vegetables</span></label>
+                        </div>
                     </div>
-                </div>
-                <div class="preference">
-                    <h2><span>2.</span>How many people are you going to serve?</h2>
-                    <div class="flex-wrapper">
-                        <input type="radio" id="more" name="number-pref" value="more">
-                        <label for="more"><i aria-hidden="true" class="fas fa-glass-cheers"></i> <span>4 and more!</span></label>
-                        <input type="radio" id="less" name="number-pref" value="less">
-                        <label for="less"><i aria-hidden="true" class="fas fa-user"></i> <span>less than 4!</span> </label>
+                    <div class="preference">
+                        <h2><span>Q2.</span>How many people are you going to serve?</h2>
+                        <div class="flex-wrapper">
+                            <input type="radio" id="more" name="number-pref" value="more">
+                            <label for="more"><i aria-hidden="true" class="fas fa-glass-cheers"></i> <span>4 and
+                                    more!</span></label>
+                            <input type="radio" id="less" name="number-pref" value="less">
+                            <label for="less"><i aria-hidden="true" class="fas fa-user"></i> <span>less than 4!</span> </label>
+                        </div>
                     </div>
-                </div>
-                <div class="preference">
-                    <h2><span>3.</span>How long it takes to cook?</h2>
-                    <div class="flex-wrapper">
-                        <input type="radio" id="long-time" name="time-pref" value="long-time">
-                        <label for="long-time"><i aria-hidden="true" class="fas fa-clock"></i> <span>35 minutes or more</span></label>
-                        <input type="radio" id="short-time" name="time-pref" value="short-time">
-                        <label for="short-time"><i aria-hidden="true" class="fas fa-stopwatch"></i> <span>less than 35 minutes</span></label>
+                    <div class="preference">
+                        <h2><span>Q3.</span>How long it takes to cook?</h2>
+                        <div class="flex-wrapper">
+                            <input type="radio" id="long-time" name="time-pref" value="long-time">
+                            <label for="long-time"><i aria-hidden="true" class="fas fa-clock"></i> <span>35 minutes or
+                                    more</span></label>
+                            <input type="radio" id="short-time" name="time-pref" value="short-time">
+                            <label for="short-time"><i aria-hidden="true" class="fas fa-stopwatch"></i> <span>less than 35
+                                    minutes</span></label>
+                        </div>
                     </div>
-                </div>
-                <button>Get the recipe!</button>
-                <div class="notice"></div>
-            </form>
-        </div>
-        <div id="results">
-            <!-- quiz result appears -->
-        </div>
-        <div class="another-try">
-            <!-- <button class="reset">Another recipe</button> -->
-        </div>
+                    <button>Get the recipe!</button>
+                    <div class="notice"></div>
+                </form>
+            </div>
+            <div id="results">
+                <!-- quiz result appears -->
+            </div>
+            <div class="another-try">
+                <!-- <button class="reset">Another recipe</button> -->
+            </div>
+        </canvas>
     </main>
     <!-- footer starts -->
     <footer>
@@ -68,6 +73,7 @@
     <!-- footer ends -->
     <!-- scripts -->
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="granim.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

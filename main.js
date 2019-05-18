@@ -1,3 +1,18 @@
+const granimInstance = new Granim({
+    element: '#canvas-basic',
+    name: 'granim',
+    opacity: [0.5, 0.5],
+    direction: 'diagonal',
+    isPausedWhenNotInView: true,
+    states: {
+        "default-state": {
+            gradients: [
+                ['#f99dc5', '#f56f6e'],
+                ['#f68e88', '#eeba83']
+            ]
+        }
+    }
+});
 const recipeApp ={};
 //28 recipes stored in the recipes property.
 recipeApp.recipes = {
@@ -386,7 +401,7 @@ recipeApp.getFinalRecipe = (arr)=>{
     return arr[randomIndex];
 }
 recipeApp.renderRecipes = (recipe)=>{
-    const $recipeName = $(`<h2>Your recipe is ❤ <br/> ${recipe.name}</h2>`);
+    const $recipeName = $(`<h2>Your recipe is ❤ <br/><span class="recipe-name">${recipe.name}</span></h2>`);
     const $recipeImgWrapper = $("<div class='image-wrapper'></div>");
     const $recipeImg = $(`<div class="recipe-image"><img src="${recipe.picLink}" alt="picture of ${recipe.name}"/></div>`)
     const $timeAndNumber = $(`<div class="info"><span class="number-info">Serves ${recipe.servingNumber[0]}</span><span class="time-info">Cooking time:${recipe.time[0]} minutes</span></div>`)
@@ -408,7 +423,7 @@ recipeApp.renderRecipes = (recipe)=>{
 }
 //when users submit the quiz form without answering all the question, a reminder will pop up.
 recipeApp.renderNotice =()=>{
-    const $notice = $("<div class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'></span>~(￣▽￣)~*</div>");
+    const $notice = $("<h3 class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'></span>~(￣▽￣)~*</h3>");
     $("#results").empty().addClass("result-wrapper").append($notice);
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 500);
 }
