@@ -124,6 +124,19 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  clip: rect(0 0 0);
+  overflow: hidden; }
+
 html {
   /* initializng fonts */
   font-family: "Kalam", cursive;
@@ -157,7 +170,12 @@ button {
   background: -o-linear-gradient(top, #e4685d 5%, #eb675e 100%);
   background: linear-gradient(to bottom, #e4685d 5%, #eb675e 100%);
   color: white; }
-  button:hover {
+  button:active {
+    position: relative;
+    top: 2px;
+    -webkit-box-shadow: 0px 8px 8px -1px #6d2f3f;
+    box-shadow: 0px 8px 8px -1px #6d2f3f; }
+  button:hover, button:focus {
     -webkit-animation: shake 0.9s ease-out both;
     animation: shake 0.9s ease-out both;
     -webkit-transform: translate3d(0, 0, 0);
@@ -285,9 +303,7 @@ label:hover::after {
 
 input[type="radio"] {
   opacity: 0;
-  position: absolute;
-  height: 0;
-  width: 0; }
+  position: absolute; }
 
 [type="radio"]:focus + label::before,
 [type="radio"]:active + label::before {
@@ -301,16 +317,14 @@ main button {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 0.8rem; }
-  main button:active {
-    position: relative;
-    top: 2px;
-    -webkit-box-shadow: 0px 8px 8px -1px #6d2f3f;
-    box-shadow: 0px 8px 8px -1px #6d2f3f; }
 
 .result-wrapper {
   padding: 1rem 5rem 2rem;
   background-color: rgba(247, 238, 118, 0.188);
   text-align: center; }
+
+.notice {
+  color: yellow; }
 
 .result-wrapper .flex-wrapper {
   margin: 0 auto;
@@ -379,7 +393,7 @@ main button {
 
 .result-wrapper span.method-order {
   display: block;
-  width: 20%;
+  width: 70%;
   margin: 0.5rem auto;
   font-size: 1.7rem;
   font-weight: bold;
@@ -392,13 +406,13 @@ main button {
 
 .page-link a {
   text-decoration: none;
-  color: inherit;
+  color: yellow;
   text-align: left;
   -webkit-transform: all 0.5s;
   -ms-transform: all 0.5s;
   transform: all 0.5s; }
-  .page-link a:hover {
-    padding-bottom: 0.3rem;
+  .page-link a:hover, .page-link a:focus {
+    padding-bottom: 0.05rem;
     border-bottom: 1px solid #582707; }
 
 .attribution {
@@ -409,3 +423,12 @@ main button {
   font-weight: 300;
   font-size: 0.9rem;
   letter-spacing: 0.05rem; }
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: color 0.6s;
+  -o-transition: color 0.6s;
+  transition: color 0.6s; }
+  footer a:hover, footer a:focus {
+    color: yellow; }

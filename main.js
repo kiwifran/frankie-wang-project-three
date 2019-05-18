@@ -387,42 +387,29 @@ recipeApp.getFinalRecipe = (arr)=>{
 }
 recipeApp.renderRecipes = (recipe)=>{
     const $recipeName = $(`<h2>Your recipe is ❤ <br/> ${recipe.name}</h2>`);
-    // const $recipeServingNumber = $(`<h3>Serves ${recipe.servingNumber[0]} ❤</h3>`)
-    // const $recipeTime = $(`<h3>Cooking time: ${recipe.time[0]}minutes</h3>`)
     const $recipeImgWrapper = $("<div class='image-wrapper'></div>");
     const $recipeImg = $(`<div class="recipe-image"><img src="${recipe.picLink}" alt="picture of ${recipe.name}"/></div>`)
     const $timeAndNumber = $(`<div class="info"><span class="number-info">Serves ${recipe.servingNumber[0]}</span><span class="time-info">Cooking time:${recipe.time[0]} minutes</span></div>`)
     $recipeImgWrapper.append($recipeImg,$timeAndNumber);
     const $cookingSteps = $("<div class='flex-wrapper'>");
-    // console.log($recipeName,$recipeServingNumber,$recipeTime);
-    console.log(recipe.method);
     //I choose to use for loop because in for loop I have access to the index and can use the index to add a serial number to cook step paragraphs.
     for(let i = 0; i <recipe.method.length; i++) {
         const step = recipe.method[i];
         if(recipe.method.length % 2 ===1 && i === recipe.method.length-1) {
-            $cookingSteps.append(`<div class="cooking-step-special"><span class="method-order">${i + 1}</span><p>${step}</p></div>`); 
+            $cookingSteps.append(`<div class="cooking-step-special"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`); 
         }else {
-            console.log(step);
-            $cookingSteps.append(`<div class="cooking-step"><span class="method-order">${i + 1}</span><p>${step}</p></div>`); 
-        }
-        
+            $cookingSteps.append(`<div class="cooking-step"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`); 
+        }    
     }
-    const $recipeLink = $(`<div class='page-link'>Read <a href="${recipe.pageLink}" target="_blank">full recipe</a> including complete ingredients list written by ${recipe.author} at <a href="https://www.bbcgoodfood.com/" target="_blank">BBC Good Food page</a></div>`)
-    // item.method.forEach(step => {
-    //     $cookingSteps.append(`<div class="result cookingStep"><p>${step}</p></div>`);
-    // });
-    $("#results").empty();
-    $("#results").addClass("result-wrapper");
-    $("#results").append($recipeName,$recipeImgWrapper, $cookingSteps, $recipeLink);
+    const $recipeLink = $(`<div class='page-link'>Read <a href="${recipe.pageLink}" target="_blank">full recipe</a> including complete ingredients list written by ${recipe.author} on BBC Good Food</div>`)
+    $("#results").empty().addClass("result-wrapper").append($recipeName,$recipeImgWrapper, $cookingSteps, $recipeLink);
     $(".another-try").html("<button class='reset'>Another recipe</button>")
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 1000);
 }
 //when users submit the quiz form without answering all the question, a reminder will pop up.
 recipeApp.renderNotice =()=>{
-    const $notice = $("<div class='notice'>~(￣▽￣)~*Please answer all three questions!~(￣▽￣)~*</div>");
-    $("#results").empty();
-    $("#results").addClass("result-wrapper");
-    $("#results").append($notice);
+    const $notice = $("<div class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'></span>~(￣▽￣)~*</div>");
+    $("#results").empty().addClass("result-wrapper").append($notice);
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 500);
 }
 //when users submit the form with all three questions answered, three variables will store the users' choice. Then I use these variables to narrow down the range of qualified recipes and have an array in which all recipes meet users' choices. Then I use the random index generator choose a final one from the array, then display it on the page.
@@ -432,20 +419,16 @@ recipeApp.storeInput = ()=>{
         const $ingredientPref = $("input[name='ingredient-pref']:checked").val();
         const $numberPref = $("input[name='number-pref']:checked").val();
         const $timePref = $("input[name='time-pref']:checked").val();
-        console.log($ingredientPref,$numberPref,$timePref);
         if($ingredientPref!==undefined&&$numberPref!==undefined&&$timePref!==undefined){
             //use filterChoices method to get a final array 
             const finalOptions = recipeApp.filterChoices($ingredientPref, $numberPref, $timePref);
             //randomly choose a recipe in the final array using getFinalRecipe method
             const finalChoice = recipeApp.getFinalRecipe(finalOptions);
             //pass the final choice in the renderRecipes method to display its information.
-            recipeApp.renderRecipes(finalChoice);
-            // console.log(finalChoice.method);
-            
+            recipeApp.renderRecipes(finalChoice);            
         }else{
             //provide a reminder using renderNotice method.
             recipeApp.renderNotice();
-            
         }
     })
 }
@@ -468,6 +451,5 @@ recipeApp.init =()=>{
     recipeApp.reset();
 }
 $(function(){
-    console.log("ready to go");
     recipeApp.init();
 });
