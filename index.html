@@ -16,12 +16,14 @@
     <!-- header starts -->
     <header>
         <h1 >Easy Recipes</h1>
-        <button class="scroll-down" aria-label="go down to recipe quiz questions">Find your recipe</button>
+        <button class="scroll-down" aria-label="go down to recipe quiz questions">Take the quiz</button>
     </header>
     <!-- header ends -->
-    
+    <!-- main part starts -->
     <main>
+        <!-- canvas for granim.js -->
         <canvas id="canvas-basic"></canvas>
+            <!-- quiz questions start -->
             <div class="question-wrapper" id="questions">
                 <form action="">
                     <div class="preference">
@@ -40,7 +42,7 @@
                             <label for="more"><i aria-hidden="true" class="fas fa-glass-cheers"></i> <span>4 and
                                     more!</span></label>
                             <input type="radio" id="less" name="number-pref" value="less">
-                            <label for="less"><i aria-hidden="true" class="fas fa-user"></i> <span>less than 4!</span> </label>
+                            <label for="less"><i aria-hidden="true" class="fas fa-user"></i> <span>Less than 4!</span> </label>
                         </div>
                     </div>
                     <div class="preference">
@@ -50,22 +52,23 @@
                             <label for="long-time"><i aria-hidden="true" class="fas fa-clock"></i> <span>35 minutes or
                                     more</span></label>
                             <input type="radio" id="short-time" name="time-pref" value="short-time">
-                            <label for="short-time"><i aria-hidden="true" class="fas fa-stopwatch"></i> <span>less than 35
+                            <label for="short-time"><i aria-hidden="true" class="fas fa-stopwatch"></i> <span>Less than 35
                                     minutes</span></label>
                         </div>
                     </div>
                     <button>Get the recipe!</button>
-                    <div class="notice"></div>
                 </form>
             </div>
+            <!-- quiz questions end -->
             <div id="results">
-                <!-- quiz result appears -->
+                <!-- quiz result or a notice reminding users to answer every question will appear here -->
             </div>
             <div class="another-try">
-                <!-- <button class="reset">Another recipe</button> -->
+                <!-- reset button will appear here -->
             </div>
         </canvas>
     </main>
+    <!-- main part ends -->
     <!-- footer starts -->
     <footer>
         <div class="attribution">Data provided by <a href="https://www.bbcgoodfood.com/" target="_blank">BBC Good Food</a></div>

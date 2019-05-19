@@ -138,7 +138,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden; }
 
 html {
-  /* initializng fonts */
   font-family: "Kalam", cursive;
   font-size: 20px; }
 
@@ -147,8 +146,6 @@ body {
   max-width: 1600px; }
 
 .flex-wrapper {
-  padding: 0;
-  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -169,7 +166,8 @@ button {
   background: -webkit-linear-gradient(top, #d13e33 5%, #d45113 100%);
   background: -o-linear-gradient(top, #d13e33 5%, #d45113 100%);
   background: linear-gradient(to bottom, #d13e33 5%, #d45113 100%);
-  color: white; }
+  color: white;
+  font-weight: bold; }
   button:active {
     position: relative;
     top: 2px;
@@ -213,36 +211,36 @@ button {
 
 header {
   height: 100vh;
-  padding-top: 11rem;
+  max-height: 1000px;
+  padding-top: 22%;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 0, 0.1)), to(rgba(255, 0, 0, 0.12))), url("../assets/background.jpg");
   background: -webkit-linear-gradient(rgba(255, 255, 0, 0.1), rgba(255, 0, 0, 0.12)), url("../assets/background.jpg");
   background: -o-linear-gradient(rgba(255, 255, 0, 0.1), rgba(255, 0, 0, 0.12)), url("../assets/background.jpg");
   background: linear-gradient(rgba(255, 255, 0, 0.1), rgba(255, 0, 0, 0.12)), url("../assets/background.jpg");
   background-repeat: no-repeat;
-  background-position: 70% 100%;
+  background-position: 100% 100%;
   background-size: cover; }
 
 h1 {
   text-align: center;
   margin: 0 auto;
   font-family: "Permanent Marker", cursive;
-  font-size: 4rem;
+  font-size: 4.5rem;
   text-transform: uppercase;
   color: #993300; }
 
 button.scroll-down {
   width: 27%;
-  margin: 2rem auto;
+  margin: 3rem auto 0;
+  padding: 1.1rem 1rem;
   -webkit-box-shadow: 0px 14px 12px -7px #81310c;
   box-shadow: 0px 14px 12px -7px #81310c;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 1.1rem 1rem; }
+  font-size: 1.5rem; }
 
 main {
   padding-bottom: 3rem;
-  color: white;
-  position: relative; }
+  position: relative;
+  color: white; }
 
 #canvas-basic {
   position: absolute;
@@ -257,33 +255,33 @@ main {
 
 .preference {
   width: 66%;
-  margin: 0 17% 0 calc(34% / 2 - 42px);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  margin: 0 17% 0 calc(17% - 42px);
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
   text-align: left; }
 
 .preference .flex-wrapper {
   margin-top: 2rem; }
 
 .preference h2 {
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: #582707; }
 
 label {
   width: 40%;
   position: relative;
   text-align: left;
-  font-size: 1.4rem; }
+  font-size: 1.5rem; }
   label:before {
     content: "";
     position: absolute;
     right: -42px;
     top: 0;
+    border-radius: 50%;
     vertical-align: middle;
     width: 40px;
     height: 40px;
     background-color: #993300;
-    border-radius: 50%;
     -webkit-transition: background-color 0.5s;
     -o-transition: background-color 0.5s;
     transition: background-color 0.5s; }
@@ -294,61 +292,65 @@ label {
     top: 6px;
     width: 28px;
     height: 28px;
-    opacity: 0;
     background: white;
     border-radius: 50%;
     -webkit-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s; }
 
-label:hover:before {
-  background-color: #f9a03f; }
-
-label:hover::after {
-  opacity: 0.5; }
-
 [type="radio"]:checked + label::after {
-  opacity: 0.8; }
+  opacity: 0.9; }
+
+label::after,
+input[type="radio"] {
+  opacity: 0; }
 
 input[type="radio"] {
-  opacity: 0;
   position: absolute; }
 
+label:hover::after {
+  opacity: 0.4; }
+
+label:hover:before,
 [type="radio"]:focus + label::before,
 [type="radio"]:active + label::before {
-  background: #f9a03f; }
+  background-color: #f9a03f; }
 
 main button {
   width: 35%;
-  margin: 3rem auto;
+  margin: 2.6rem auto;
   -webkit-box-shadow: 0px 12px 10px -4px #81310c;
   box-shadow: 0px 12px 10px -4px #81310c;
   font-size: 1.2rem;
-  font-weight: bold;
   padding: 0.7rem 0.8rem; }
 
-.result-wrapper {
-  padding: 1rem 5rem 2rem;
+.result-wrapper,
+.notice-wrapper {
+  padding: 2rem 0;
   background-color: rgba(253, 246, 142, 0.188);
   text-align: center; }
 
+.notice,
+.result-wrapper .flex-wrapper,
+.result-wrapper .page-link {
+  width: calc(66% + 42px);
+  margin: 0 calc(17% - 42px); }
+
 .notice {
-  color: #582707; }
+  color: #582707;
+  font-size: 1.5rem; }
 
 .result-wrapper .flex-wrapper {
-  margin: 0 auto;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  text-align: left;
-  line-height: 1.2;
-  font-size: 0.9rem; }
+  text-align: left; }
 
 .recipe-name {
   color: #d13e33;
   font-size: 2rem; }
 
 .result-wrapper .image-wrapper {
-  width: 30%;
+  width: 27%;
   margin: 1rem auto;
   position: relative;
   overflow: hidden; }
@@ -360,14 +362,10 @@ main button {
   opacity: 1; }
 
 .image-wrapper:hover .number-info {
-  left: 0;
   margin-top: 0; }
 
 .image-wrapper:hover .time-info {
   margin-top: 4%; }
-
-.result-wrapper .recipe-image {
-  width: 100%; }
 
 .recipe-image img {
   border-radius: 50%;
@@ -379,9 +377,9 @@ main button {
   height: 100%;
   position: absolute;
   left: 0;
-  top: 35%;
+  top: 40%;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.35rem;
   font-weight: bold;
   color: #582707;
   opacity: 0; }
@@ -419,8 +417,8 @@ main button {
   text-align: center; }
 
 .result-wrapper .page-link {
-  margin-top: 2rem;
-  padding-top: 0.5rem;
+  margin-top: 1.6rem;
+  padding-top: 0.9rem;
   border-top: 3px solid #d45113;
   font-size: 1.5rem; }
 
@@ -432,7 +430,6 @@ main button {
   -ms-transform: all 0.5s;
   transform: all 0.5s; }
   .page-link a:hover, .page-link a:focus {
-    padding-bottom: 0.02rem;
     border-bottom: 1px solid #d45113; }
 
 .attribution {

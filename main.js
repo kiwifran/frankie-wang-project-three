@@ -1,3 +1,4 @@
+//granim settings for main part background
 const granimInstance = new Granim({
     element: '#canvas-basic',
     name: 'granim',
@@ -13,8 +14,9 @@ const granimInstance = new Granim({
         }
     }
 });
+//app starts
 const recipeApp ={};
-//28 recipes stored in the recipes property.
+//28 recipes stored in the "recipes" property.
 recipeApp.recipes = {
     meat: [
         {
@@ -98,7 +100,6 @@ recipeApp.recipes = {
                 "Mix the 4 tbsp rice wine vinegar or white wine vinegar, 1 tbsp soy sauce, 2 tbsp sweet chilli sauce and 2 tbsp tomato ketchup in a jug with 2 tbsp water, then pour over the veg.",
                 "Bubble for 2 mins, then add the beef back to the pan and toss well to coat.",
                 "Serve the beef on noodles with prawn crackers, if you like, scattered with the remaining ½ sliced red chilli and sliced green parts of the spring onions."
-
             ]
         },
         {
@@ -388,46 +389,59 @@ recipeApp.scrollDown = () => {
         $("html, body").animate({ scrollTop: $("#questions").offset().top }, 1000);
     })
 }
-//use users' input to filter the recipes(first filter: preference for ingredient; second filter: preference for number of people being served; third filter about cooking time
+//use users' input to filter the recipes(first filter: preference for ingredient; second filter: preference for number of people being served; third filter: preference for cooking time)
 recipeApp.filterChoices =(ingredientCond, numberCond, timeCond)=>{
     const ingredientOptions = recipeApp.recipes[ingredientCond];
     const numberOptions = ingredientOptions.filter(recipe => recipe.servingNumber[1] === numberCond);
     const timeOptions = numberOptions.filter(recipe => recipe.time[1] === timeCond);
     return timeOptions;
 }
-//use math.random to choose a final recipe from the options 
+//use math.random to choose a final recipe from the available options
 recipeApp.getFinalRecipe = (arr)=>{
     const randomIndex = Math.floor(Math.random()*arr.length);
     return arr[randomIndex];
 }
-recipeApp.renderRecipes = (recipe)=>{
+//As I will explain further below in the renderRecipe method, I'd like to differentiate the submit button and the reset button in their functions. I also decide to wrap the procedures to make html strings in a separate method of my app, and I can call this method only when it is needed.
+recipeApp.makeHtmlString = (recipe)=>{
     const $recipeName = $(`<h2>Your recipe is ❤ <br/><span class="recipe-name">${recipe.name}</span></h2>`);
     const $recipeImgWrapper = $("<div class='image-wrapper'></div>");
     const $recipeImg = $(`<div class="recipe-image"><img src="${recipe.picLink}" alt="picture of ${recipe.name}"/></div>`)
     const $timeAndNumber = $(`<div class="info"><span class="number-info">Serves ${recipe.servingNumber[0]}</span><span class="time-info">Cooking time:${recipe.time[0]} minutes</span></div>`)
-    $recipeImgWrapper.append($recipeImg,$timeAndNumber);
+    $recipeImgWrapper.append($recipeImg, $timeAndNumber);
     const $cookingSteps = $("<div class='flex-wrapper'>");
-    //I choose to use for loop because in for loop I have access to the index and can use the index to add a serial number to cook step paragraphs.
-    for(let i = 0; i <recipe.method.length; i++) {
+    //I choose to use for loop because in the for loop I have access to the index and can use the index to add a serial number for every single cook step paragraph.
+    for (let i = 0; i < recipe.method.length; i++) {
         const step = recipe.method[i];
-        if(recipe.method.length % 2 ===1 && i === recipe.method.length-1) {
-            $cookingSteps.append(`<div class="cooking-step-special"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`); 
-        }else {
-            $cookingSteps.append(`<div class="cooking-step"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`); 
-        }    
+        //if the number of cooking steps is an odd number, I will style the last step differently for a better-looking layout.
+        if (recipe.method.length % 2 === 1 && i === recipe.method.length - 1) {
+            $cookingSteps.append(`<div class="cooking-step-special"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`);
+        } else {
+            $cookingSteps.append(`<div class="cooking-step"><span class="method-order">Step ${i + 1}</span><p>${step}</p></div>`);
+        }
     }
     const $recipeLink = $(`<div class='page-link'>Read <a href="${recipe.pageLink}" target="_blank">full recipe</a> including complete ingredients list written by ${recipe.author} on BBC Good Food</div>`)
-    $("#results").empty().addClass("result-wrapper").append($recipeName,$recipeImgWrapper, $cookingSteps, $recipeLink);
+    return [$recipeName, $recipeImgWrapper, $cookingSteps, $recipeLink];
+}
+//I used to have a results part that clear its content and render recipe infomation everytime users submit the form. Then, I found that I prefer that the submit button in form is clearly different in function from the reset button, so I move the html string making procedure out of this method, and use if and else if to check the class name on the results part to render recipe information conditionally. In other words: if there is already a recipe there, do nothing; if there is a reminder, clear the content and load the recipe; if there is nothing, load the recipe directly.
+recipeApp.renderRecipes = (recipe)=>{
+    const $resultPart = $("#results");
+    if($resultPart.hasClass("notice-wrapper")){
+        const htmlArray = recipeApp.makeHtmlString(recipe);
+        $resultPart.removeClass("notice-wrapper").empty().addClass("result-wrapper").append(htmlArray[0], htmlArray[1],htmlArray[2],htmlArray[3]);
+    }else if($resultPart.hasClass("result-wrapper")===false){
+        const htmlArray = recipeApp.makeHtmlString(recipe);
+        $resultPart.addClass("result-wrapper").append(htmlArray[0], htmlArray[1], htmlArray[2], htmlArray[3]);
+    }
     $(".another-try").html("<button class='reset'>Another recipe</button>")
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 1000);
 }
 //when users submit the quiz form without answering all the question, a reminder will pop up.
 recipeApp.renderNotice =()=>{
     const $notice = $("<h3 class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'></span>~(￣▽￣)~*</h3>");
-    $("#results").empty().addClass("result-wrapper").append($notice);
+    $("#results").empty().addClass("notice-wrapper").append($notice);
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 500);
 }
-//when users submit the form with all three questions answered, three variables will store the users' choice. Then I use these variables to narrow down the range of qualified recipes and have an array in which all recipes meet users' choices. Then I use the random index generator choose a final one from the array, then display it on the page.
+//when users submit the form with all three questions answered, three variables will store the users' choice. Then I use these variables to narrow down the range of qualified recipes using filterChoices method, so I get an array in which all recipes meet users' choices. Afterwards I use the getFinalRecipe method to randomly choose a final recipe from the array, then pass the recipe to the renderRecipes method to display its information on the page. However, if the users haven't answer all the questions, renderNotice method will be called instead to render a reminder.
 recipeApp.storeInput = ()=>{
     $("form").on("submit", function(e){
         e.preventDefault();
@@ -435,27 +449,22 @@ recipeApp.storeInput = ()=>{
         const $numberPref = $("input[name='number-pref']:checked").val();
         const $timePref = $("input[name='time-pref']:checked").val();
         if($ingredientPref!==undefined&&$numberPref!==undefined&&$timePref!==undefined){
-            //use filterChoices method to get a final array 
             const finalOptions = recipeApp.filterChoices($ingredientPref, $numberPref, $timePref);
-            //randomly choose a recipe in the final array using getFinalRecipe method
             const finalChoice = recipeApp.getFinalRecipe(finalOptions);
-            //pass the final choice in the renderRecipes method to display its information.
             recipeApp.renderRecipes(finalChoice);            
         }else{
-            //provide a reminder using renderNotice method.
             recipeApp.renderNotice();
         }
     })
 }
-//after recipe shows on the page, if users have another idea, they can click the reset button to fill the cleared form again.
+//after recipe shows on the page, if users have another idea, they can click the reset button to take the quiz again. the reset button will empty the results part and clear the form.
 recipeApp.reset = ()=>{
     $(".another-try").on("click", "button.reset", function (){
         $("form").trigger("reset");
         $("html, body").animate({ scrollTop: $("#questions").offset().top }, 500);
-        //since the empty() method is triggered a little earlier than the scrolling up, I use the setTimeout to "hide" it from users.
+        //since the empty() method is triggered a little earlier than the scrolling up animation, I use the setTimeout to "hide" the emptying procedure from users.
         setTimeout(function () {
-            $("#results").empty();
-            $("#results").toggleClass("result-wrapper");
+            $("#results").empty().toggleClass("result-wrapper");
             $(".another-try").empty();
         }, 300);
     })
