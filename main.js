@@ -406,7 +406,7 @@ recipeApp.makeHtmlString = (recipe)=>{
     const $recipeName = $(`<h2>Your recipe is ❤ <br/><span class="recipe-name">${recipe.name}</span></h2>`);
     const $recipeImgWrapper = $("<div class='image-wrapper'></div>");
     const $recipeImg = $(`<div class="recipe-image"><img src="${recipe.picLink}" alt="picture of ${recipe.name}"/></div>`)
-    const $timeAndNumber = $(`<div class="info"><span class="number-info">Serves ${recipe.servingNumber[0]}</span><span class="time-info">Cooking time:${recipe.time[0]} minutes</span></div>`)
+    const $timeAndNumber = $(`<div class="info"><span class="number-info">Serves ${recipe.servingNumber[0]}</span><span class="time-info">Cooking ${recipe.time[0]} min</span></div>`)
     $recipeImgWrapper.append($recipeImg, $timeAndNumber);
     const $cookingSteps = $("<div class='flex-wrapper'>");
     //I choose to use for loop because in the for loop I have access to the index and can use the index to add a serial number for every single cook step paragraph.
