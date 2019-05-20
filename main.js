@@ -396,7 +396,7 @@ recipeApp.filterChoices =(ingredientCond, numberCond, timeCond)=>{
     const timeOptions = numberOptions.filter(recipe => recipe.time[1] === timeCond);
     return timeOptions;
 }
-//use math.random to choose a final recipe from the available options
+//use math.random and math.floor to choose a final recipe from the available options
 recipeApp.getFinalRecipe = (arr)=>{
     const randomIndex = Math.floor(Math.random()*arr.length);
     return arr[randomIndex];
@@ -422,7 +422,7 @@ recipeApp.makeHtmlString = (recipe)=>{
     const $recipeLink = $(`<div class='page-link'>Read <a href="${recipe.pageLink}" target="_blank">full recipe</a> including complete ingredients list written by ${recipe.author} on BBC Good Food</div>`)
     return [$recipeName, $recipeImgWrapper, $cookingSteps, $recipeLink];
 }
-//I used to have a results part that clear its content and render recipe infomation everytime users submit the form. Then, I found that I prefer that the submit button in form is clearly different in function from the reset button, so I move the html string making procedure out of this method, and use if and else if to check the class name on the results part to render recipe information conditionally. In other words: if there is already a recipe there, do nothing; if there is a reminder, clear the content and load the recipe; if there is nothing, load the recipe directly.
+//I used to have a results div that clear its content and render recipe infomation everytime users submit the form clicking the button. Then, I found that I prefer that the submit button in form is clearly different in function from the reset button, so I move the html string making procedure out of this method, and use if and else if to check the class name on the results div to render recipe information conditionally. In other words: if there is already a recipe there, do nothing; if there is a reminder, clear the content and load the recipe; if there is nothing, load the recipe directly.
 recipeApp.renderRecipes = (recipe)=>{
     const $resultPart = $("#results");
     if($resultPart.hasClass("notice-wrapper")){
@@ -432,16 +432,17 @@ recipeApp.renderRecipes = (recipe)=>{
         const htmlArray = recipeApp.makeHtmlString(recipe);
         $resultPart.addClass("result-wrapper").append(htmlArray[0], htmlArray[1], htmlArray[2], htmlArray[3]);
     }
-    $(".another-try").html("<button class='reset'>Another recipe</button>")
+    //add a reset button under the result div
+    $(".another-try").html("<button class='reset' aria-label='take the recipe quiz again'>Another recipe</button>")
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 1000);
 }
 //when users submit the quiz form without answering all the question, a reminder will pop up.
 recipeApp.renderNotice =()=>{
-    const $notice = $("<h3 class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'></span>~(￣▽￣)~*</h3>");
+    const $notice = $("<h3 class='notice'><span aria-hidden='true' >~(￣▽￣)~*</span>Please answer all three questions!<span aria-hidden='true'>~(￣▽￣)~*</span></h3>");
     $("#results").empty().addClass("notice-wrapper").append($notice);
     $("html, body").animate({ scrollTop: $("#results").offset().top }, 500);
 }
-//when users submit the form with all three questions answered, three variables will store the users' choice. Then I use these variables to narrow down the range of qualified recipes using filterChoices method, so I get an array in which all recipes meet users' choices. Afterwards I use the getFinalRecipe method to randomly choose a final recipe from the array, then pass the recipe to the renderRecipes method to display its information on the page. However, if the users haven't answer all the questions, renderNotice method will be called instead to render a reminder.
+//when users submit the form with all three questions answered, three variables will store the users' choice. Then I use these variables to narrow down the range of qualified recipes using filterChoices method, so I get an array in which all recipes meet users' choices. Afterwards I use the getFinalRecipe method to randomly choose a final recipe from the array, then pass the recipe to the renderRecipes method to display its information on the page. However, if the users haven't answer all the questions, renderNotice method will be called to render a reminder.
 recipeApp.storeInput = ()=>{
     $("form").on("submit", function(e){
         e.preventDefault();
@@ -457,7 +458,7 @@ recipeApp.storeInput = ()=>{
         }
     })
 }
-//after recipe shows on the page, if users have another idea, they can click the reset button to take the quiz again. the reset button will empty the results part and clear the form.
+//after recipe shows on the page, if users have another idea, they can click the reset button to take the quiz again. the reset button will empty the results div and clear the form.
 recipeApp.reset = ()=>{
     $(".another-try").on("click", "button.reset", function (){
         $("form").trigger("reset");
